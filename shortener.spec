@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['shortener.py'],
-             pathex=['C:\\Users\\rebec\\Desktop\\name shortener'],
+             pathex=['C:\\Users\\rebec\\Documents\\file-name-shortener'],
              binaries=[],
              datas=[],
              hiddenimports=[],

@@ -49,14 +49,30 @@ class App:
         name_size = int(self.caracters.get())
 
         mylist = [f for f in glob.glob("*")]
+        count = 0
+
+        duplicates = []
 
         for file in mylist:
             index = file.find(".")
+            file_index = mylist.index(file)
+            name = file[:name_size] + file[index:]
             if ((file == "shortener.py") or (file == "shortener.exe")):
                 pass
             else:
-                extension = file[index:]
-                os.rename(file, (file[:name_size] + extension))
+                path = './' + name
+                if(os.path.isfile(path)):
+                    duplicates.append(file)
+                    pass
+                else:
+                    os.rename(file, name)
+
+        for dup in duplicates:
+            print(dup)
+            count += 1
+            index = dup.find(".")
+            dup_name = dup[:name_size] + str(count) + dup[index:]
+            os.rename(dup, dup_name)
 
         self.msg_done["text"] = ("Concluído! Os nomes foram encurtados para", name_size, "caracteres.")
 
